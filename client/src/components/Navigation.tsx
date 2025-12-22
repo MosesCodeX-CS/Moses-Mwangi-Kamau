@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { Menu, X, Download } from "lucide-react";
+import { Menu, X, Download, Moon, Sun } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -11,7 +11,7 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
-export function Navigation() {
+export function Navigation({ theme, onToggleTheme }: { theme: "light" | "dark", onToggleTheme: () => void }) {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -40,6 +40,13 @@ export function Navigation() {
               </span>
             </Link>
           ))}
+          <button
+            onClick={onToggleTheme}
+            className="ml-2 p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
           <a
             href="/api/download-cv"
             download="Moses-Mwangi-CV.txt"
@@ -93,6 +100,25 @@ export function Navigation() {
                   </span>
                 </Link>
               ))}
+              <button
+                onClick={() => {
+                  onToggleTheme();
+                  setIsOpen(false);
+                }}
+                className="mt-4 flex items-center gap-2 text-lg font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
+                {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+                {theme === "light" ? "Dark Mode" : "Light Mode"}
+              </button>
+              <a
+                href="/api/download-cv"
+                download="Moses-Mwangi-CV.txt"
+                onClick={() => setIsOpen(false)}
+                className="mt-2 px-4 py-2 bg-accent text-accent-foreground text-sm font-medium rounded-full hover:bg-accent/90 transition-all flex items-center gap-2 justify-center"
+              >
+                <Download size={16} />
+                Download CV
+              </a>
             </nav>
           </motion.div>
         )}

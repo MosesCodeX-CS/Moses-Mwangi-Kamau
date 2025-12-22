@@ -1,7 +1,7 @@
 import { PageTransition } from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, Code, Layout, Smartphone } from "lucide-react";
+import { ArrowRight, Code, Layout, Smartphone, Award, Target, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { useProjects } from "@/hooks/use-portfolio";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -81,6 +81,39 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold font-display mb-3">{service.title}</h3>
                 <p className="text-muted-foreground">{service.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Achievements */}
+      <section className="py-20 lg:py-32 bg-primary/5 border-y border-border/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Achievements & Recognition</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">Recognized nationally for excellence in web development and innovative solutions.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { icon: Award, title: "Gold Medal", desc: "ICT Web Development at KATTI National TVET Fairs & Competitions 2025", color: "text-yellow-600" },
+              { icon: Target, title: "Silver Medal", desc: "ICT Software Solutions for Business at KATTI Research & Innovation Competitions 2025", color: "text-slate-400" },
+              { icon: Zap, title: "5+ Projects Deployed", desc: "Full-stack solutions for local businesses with 95%+ bug-free deployment", color: "text-blue-600" }
+            ].map((achievement, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-background p-8 rounded-2xl border border-border hover:border-primary/50 transition-all hover:shadow-lg"
+              >
+                <div className={`w-14 h-14 ${achievement.color} rounded-xl flex items-center justify-center mb-6 bg-opacity-10`}>
+                  <achievement.icon size={28} className={achievement.color} />
+                </div>
+                <h3 className="text-xl font-bold font-display mb-3">{achievement.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{achievement.desc}</p>
               </motion.div>
             ))}
           </div>
