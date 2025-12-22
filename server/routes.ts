@@ -36,6 +36,36 @@ async function seedDatabase() {
       tags: ["Next.js", "OpenAI API", "Prisma"],
       featured: false
     });
+
+    await storage.createProject({
+      title: "Design System Component Library",
+      description: "Comprehensive React component library with 50+ customizable components. Includes documentation, storybook integration, and accessibility features.",
+      imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
+      projectUrl: "#",
+      repoUrl: "#",
+      tags: ["React", "Storybook", "TypeScript", "CSS-in-JS"],
+      featured: false
+    });
+
+    await storage.createProject({
+      title: "Video Streaming Platform",
+      description: "Scalable video streaming platform with adaptive bitrate streaming, user recommendations, and real-time chat integration.",
+      imageUrl: "https://images.unsplash.com/photo-1533613220915-8f00cce9fda0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
+      projectUrl: "#",
+      repoUrl: "#",
+      tags: ["Node.js", "PostgreSQL", "WebSocket", "FFmpeg"],
+      featured: false
+    });
+
+    await storage.createProject({
+      title: "Mobile Fitness Tracker",
+      description: "Native iOS and Android fitness tracking app with workout planning, nutrition tracking, and social challenges.",
+      imageUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
+      projectUrl: "#",
+      repoUrl: "#",
+      tags: ["React Native", "Firebase", "GraphQL", "Redux"],
+      featured: false
+    });
   }
 
   const existingSkills = await storage.getSkills();
@@ -60,13 +90,19 @@ async function seedDatabase() {
       role: "Senior Full Stack Engineer",
       company: "Tech Innovations Inc.",
       duration: "2021 - Present",
-      description: "Leading a team of 5 developers building scalable cloud solutions. Improved system performance by 40%."
+      description: "Leading a team of 5 developers building scalable cloud solutions. Improved system performance by 40% and reduced deployment time from 2 hours to 15 minutes through CI/CD optimization."
     });
     await storage.createExperience({
       role: "Frontend Developer",
       company: "Creative Digital Agency",
       duration: "2019 - 2021",
-      description: "Developed responsive websites for high-profile clients. Collaborated closely with designers to implement pixel-perfect UIs."
+      description: "Developed responsive websites and web applications for high-profile clients. Collaborated closely with designers to implement pixel-perfect UIs and maintained 98% Lighthouse scores."
+    });
+    await storage.createExperience({
+      role: "Junior Web Developer",
+      company: "StartUp Labs",
+      duration: "2018 - 2019",
+      description: "Built full-stack features for MVP products. Learned agile methodologies and shipped 3 successful products that raised combined $2M in funding."
     });
   }
 }
