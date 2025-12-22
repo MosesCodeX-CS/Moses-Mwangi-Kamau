@@ -2,9 +2,25 @@ import { PageTransition } from "@/components/PageTransition";
 import { ProjectCard } from "@/components/ProjectCard";
 import { useProjects } from "@/hooks/use-portfolio";
 import { motion } from "framer-motion";
+import { useState, useMemo } from "react";
 
 export default function Projects() {
   const { data: projects, isLoading } = useProjects();
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  const allTags = useMemo(() => {
+    if (!projects) return [];
+    const tags = new Set<string>();
+    projects.forEach(p => {
+      p.tags?.forEach(tag => tags.add(tag));
+    });
+    return Array.from(tags).sort();
+  }, [projects]);
+
+  const filteredProjects = useMemo(() => {
+    if (!selectedTag || !projects) return projects;
+    return projects.filter(p => p.tags?.includes(selectedTag));
+  }, [projects, selectedTag]);
 
   return (
     <PageTransition>
@@ -17,6 +33,38 @@ export default function Projects() {
             </p>
           </div>
 
+          {/* Filter Tags */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-wrap gap-2 mb-12"
+          >
+            <button
+              onClick={() => setSelectedTag(null)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all border ${
+                selectedTag === null
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "border-border hover:border-primary text-muted-foreground hover:text-primary"
+              }`}
+            >
+              All Projects
+            </button>
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all border ${
+                  selectedTag === tag
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "border-border hover:border-primary text-muted-foreground hover:text-primary"
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </motion.div>
+
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -24,17 +72,31 @@ export default function Projects() {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects?.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
-              ))}
-            </div>
-          )}
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredProjects?.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                  >
+                    <ProjectCard project={project} index={index} />
+                  </motion.div>
+                ))}
+              </div>
 
-          {!isLoading && projects?.length === 0 && (
-            <div className="text-center py-20 border border-dashed border-border rounded-2xl">
-              <p className="text-muted-foreground">No projects found.</p>
-            </div>
+              {filteredProjects?.length === 0 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center py-20 border border-dashed border-border rounded-2xl"
+                >
+                  <p className="text-muted-foreground">No projects found with the selected tag.</p>
+                </motion.div>
+              )}
+            </>
           )}
         </div>
       </section>

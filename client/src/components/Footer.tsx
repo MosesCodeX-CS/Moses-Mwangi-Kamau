@@ -16,7 +16,9 @@ export function Footer() {
             <h3 className="font-bold mb-4 text-sm uppercase tracking-wider text-primary">Links</h3>
             <ul className="space-y-3">
               <li><a href="/" className="text-muted-foreground hover:text-primary transition-colors">Home</a></li>
+              <li><a href="/about" className="text-muted-foreground hover:text-primary transition-colors">About</a></li>
               <li><a href="/projects" className="text-muted-foreground hover:text-primary transition-colors">Work</a></li>
+              <li><a href="/blog" className="text-muted-foreground hover:text-primary transition-colors">Blog</a></li>
               <li><a href="/experience" className="text-muted-foreground hover:text-primary transition-colors">Experience</a></li>
               <li><a href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</a></li>
             </ul>

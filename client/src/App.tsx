@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Projects from "@/pages/Projects";
+import Blog from "@/pages/Blog";
 import Experience from "@/pages/Experience";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
@@ -26,6 +27,7 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/projects" component={Projects} />
+        <Route path="/blog" component={Blog} />
         <Route path="/experience" component={Experience} />
         <Route path="/contact" component={Contact} />
         <Route component={NotFound} />

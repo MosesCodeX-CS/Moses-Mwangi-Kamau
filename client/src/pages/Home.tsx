@@ -241,6 +241,85 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-20 lg:py-32">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Frequently Asked Questions</h2>
+            <p className="text-muted-foreground">Quick answers to common questions about my services and capabilities.</p>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              {
+                q: "What technologies do you specialize in?",
+                a: "I specialize in full-stack development with expertise in PHP, Python, JavaScript, Django, React, and modern web technologies. I also work with databases like MySQL and PostgreSQL."
+              },
+              {
+                q: "What's your typical project timeline?",
+                a: "Project timelines vary depending on complexity. Small projects typically take 2-4 weeks, while larger systems can take 2-3 months. I'll provide a detailed estimate after understanding your requirements."
+              },
+              {
+                q: "Do you offer post-launch support?",
+                a: "Yes, I provide post-deployment support including bug fixes, performance optimization, and feature additions. I can also help with maintenance and scaling as your project grows."
+              },
+              {
+                q: "Can you work on existing projects?",
+                a: "Absolutely. I can join ongoing projects, refactor legacy code, add new features, or optimize performance. I work well with existing teams and can adapt to established workflows."
+              },
+              {
+                q: "What's your approach to project management?",
+                a: "I follow agile methodologies with regular communication and progress updates. You'll have full visibility into the development process with milestone-based delivery."
+              },
+              {
+                q: "How do you handle security?",
+                a: "Security is paramount. I implement best practices for authentication, data protection, SQL injection prevention, XSS mitigation, and follow industry security standards throughout development."
+              }
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.05 }}
+                className="p-6 rounded-xl border border-border hover:border-primary/50 transition-all bg-card"
+              >
+                <h3 className="font-bold text-lg text-foreground mb-2">{item.q}</h3>
+                <p className="text-muted-foreground leading-relaxed">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="py-20 lg:py-32 bg-muted/30 border-y border-border/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Stay Updated</h2>
+            <p className="text-muted-foreground mb-8">Get the latest articles, tips, and insights on full-stack development delivered to your inbox.</p>
+            
+            <form className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 px-4 py-3 rounded-full border border-border bg-background focus:outline-none focus:border-primary transition-colors"
+                required
+              />
+              <Button size="lg" className="rounded-full px-8 whitespace-nowrap">
+                Subscribe
+              </Button>
+            </form>
+            <p className="text-xs text-muted-foreground mt-4">No spam, just quality content. Unsubscribe anytime.</p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 lg:py-32 bg-gradient-to-r from-primary via-primary/90 to-primary/80 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
