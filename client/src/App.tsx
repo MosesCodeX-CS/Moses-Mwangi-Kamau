@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 
 // Pages
 import Home from "@/pages/Home";
+import About from "@/pages/About";
 import Projects from "@/pages/Projects";
 import Experience from "@/pages/Experience";
 import Contact from "@/pages/Contact";
@@ -23,6 +24,7 @@ function Router() {
     <AnimatePresence mode="wait">
       <Switch location={location} key={location}>
         <Route path="/" component={Home} />
+        <Route path="/about" component={About} />
         <Route path="/projects" component={Projects} />
         <Route path="/experience" component={Experience} />
         <Route path="/contact" component={Contact} />

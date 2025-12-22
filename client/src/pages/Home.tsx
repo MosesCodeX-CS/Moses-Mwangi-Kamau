@@ -1,7 +1,7 @@
 import { PageTransition } from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, Code, Layout, Smartphone, Award, Target, Zap } from "lucide-react";
+import { ArrowRight, Code, Layout, Smartphone, Award, Target, Zap, Quote } from "lucide-react";
 import { motion } from "framer-motion";
 import { useProjects } from "@/hooks/use-portfolio";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -9,6 +9,13 @@ import { ProjectCard } from "@/components/ProjectCard";
 export default function Home() {
   const { data: projects, isLoading } = useProjects();
   const featuredProjects = projects?.filter(p => p.featured).slice(0, 3);
+
+  const stats = [
+    { number: "5+", label: "Projects Delivered", suffix: "" },
+    { number: "2", label: "National Awards", suffix: "" },
+    { number: "95", label: "Quality Score", suffix: "%" },
+    { number: "100%", label: "Client Satisfaction", suffix: "" }
+  ];
 
   return (
     <PageTransition>
@@ -55,6 +62,35 @@ export default function Home() {
                 </Button>
               </Link>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 border-y border-border/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="text-center"
+              >
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.2, duration: 0.5 }}
+                  className="text-3xl md:text-4xl font-display font-bold text-primary mb-2"
+                >
+                  {stat.number}{stat.suffix}
+                </motion.div>
+                <p className="text-sm md:text-base text-muted-foreground font-medium">{stat.label}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -154,6 +190,84 @@ export default function Home() {
               <Button variant="outline" className="w-full">View All Projects</Button>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 lg:py-32">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">What People Say</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">Recognized by clients and judges for technical excellence and professional delivery.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { 
+                quote: "Moses delivered an exceptional WiFi billing system that transformed how we manage our network resources. His attention to detail and problem-solving skills are outstanding.", 
+                author: "Local Business Owner",
+                role: "WiFi Service Provider"
+              },
+              { 
+                quote: "The POS system he built is intuitive and reliable. It has significantly improved our retail operations. Highly recommended for any business looking for professional solutions.", 
+                author: "Store Manager",
+                role: "Supermarket Owner"
+              },
+              { 
+                quote: "Winning gold in the national web development competition against 50+ institutions shows Moses's exceptional technical prowess and innovative approach to solving real-world problems.", 
+                author: "KATTI Judges",
+                role: "Technical Assessment Panel"
+              }
+            ].map((testimonial, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-card p-8 rounded-2xl border border-border hover:border-primary/50 transition-all"
+              >
+                <div className="flex gap-1 mb-4">
+                  <Quote className="w-5 h-5 text-primary opacity-40" />
+                </div>
+                <p className="text-foreground mb-6 leading-relaxed italic">"{testimonial.quote}"</p>
+                <div className="border-t border-border pt-4">
+                  <p className="font-bold text-foreground">{testimonial.author}</p>
+                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 lg:py-32 bg-gradient-to-r from-primary via-primary/90 to-primary/80 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.2),transparent)]"></div>
+        </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center max-w-2xl mx-auto"
+          >
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary-foreground mb-6">Ready to Build Your Next Project?</h2>
+            <p className="text-lg text-primary-foreground/90 mb-8">Let's collaborate on something amazing. I'm ready to help bring your vision to life.</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" variant="secondary" className="rounded-full px-8">
+                  Get in Touch <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link href="/about">
+                <Button size="lg" variant="outline" className="rounded-full px-8 bg-primary-foreground/10 text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/20">
+                  Learn More About Me
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
     </PageTransition>
