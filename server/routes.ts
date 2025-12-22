@@ -71,13 +71,23 @@ async function seedDatabase() {
   const existingSkills = await storage.getSkills();
   if (existingSkills.length === 0) {
     const skills = [
-      { name: "React", category: "Frontend", proficiency: 90 },
-      { name: "TypeScript", category: "Languages", proficiency: 85 },
-      { name: "Node.js", category: "Backend", proficiency: 80 },
-      { name: "PostgreSQL", category: "Backend", proficiency: 75 },
-      { name: "Tailwind CSS", category: "Frontend", proficiency: 95 },
-      { name: "Docker", category: "DevOps", proficiency: 70 },
-      { name: "Figma", category: "Design", proficiency: 60 },
+      { name: "PHP", category: "Languages", proficiency: 90 },
+      { name: "Python", category: "Languages", proficiency: 90 },
+      { name: "JavaScript", category: "Languages", proficiency: 90 },
+      { name: "SQL", category: "Languages", proficiency: 80 },
+      { name: "TypeScript", category: "Languages", proficiency: 75 },
+      { name: "HTML5", category: "Languages", proficiency: 85 },
+      { name: "CSS3", category: "Languages", proficiency: 85 },
+      { name: "Django", category: "Frameworks", proficiency: 85 },
+      { name: "Bootstrap", category: "Frameworks", proficiency: 85 },
+      { name: "jQuery", category: "Frameworks", proficiency: 70 },
+      { name: "MySQL", category: "Database", proficiency: 85 },
+      { name: "PostgreSQL", category: "Database", proficiency: 75 },
+      { name: "Git", category: "Tools", proficiency: 85 },
+      { name: "GitHub", category: "Tools", proficiency: 85 },
+      { name: "Docker", category: "Tools", proficiency: 75 },
+      { name: "Linux", category: "Tools", proficiency: 80 },
+      { name: "REST APIs", category: "Frameworks", proficiency: 80 },
     ];
     for (const skill of skills) {
       await storage.createSkill(skill);
@@ -87,22 +97,16 @@ async function seedDatabase() {
   const existingExp = await storage.getExperiences();
   if (existingExp.length === 0) {
     await storage.createExperience({
-      role: "Senior Full Stack Engineer",
-      company: "Tech Innovations Inc.",
-      duration: "2021 - Present",
-      description: "Leading a team of 5 developers building scalable cloud solutions. Improved system performance by 40% and reduced deployment time from 2 hours to 15 minutes through CI/CD optimization."
+      role: "Freelance Software Developer",
+      company: "Self-Employed",
+      duration: "2023 – Present",
+      description: "Full-Stack Development: Designed and developed 5+ web applications from concept to deployment. Created customized solutions for local businesses including WiFi billing systems and POS platforms. Managed complete project lifecycle from requirements gathering to post-deployment support. Advised clients on optimal technology solutions for their business needs. Implemented testing protocols ensuring 95%+ bug-free deployment."
     });
     await storage.createExperience({
-      role: "Frontend Developer",
-      company: "Creative Digital Agency",
-      duration: "2019 - 2021",
-      description: "Developed responsive websites and web applications for high-profile clients. Collaborated closely with designers to implement pixel-perfect UIs and maintained 98% Lighthouse scores."
-    });
-    await storage.createExperience({
-      role: "Junior Web Developer",
-      company: "StartUp Labs",
-      duration: "2018 - 2019",
-      description: "Built full-stack features for MVP products. Learned agile methodologies and shipped 3 successful products that raised combined $2M in funding."
+      role: "ICT Technical Support",
+      company: "Kijabe Hospital",
+      duration: "January 2025 – April 2025",
+      description: "Provided technical support and system maintenance for hospital ICT infrastructure. Assisted in resolving network and software issues to ensure seamless operations. Supported healthcare staff with IT-related challenges."
     });
   }
 }

@@ -39,7 +39,7 @@ export default function Contact() {
           <div className="flex flex-col justify-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">Get in Touch</h1>
             <p className="text-xl text-muted-foreground mb-12">
-              Have a project in mind or just want to say hi? I'm always open to discussing new opportunities and ideas.
+              Have a project in mind or want to collaborate? I'm always interested in discussing new opportunities and innovative solutions.
             </p>
 
             <div className="space-y-8">
@@ -49,8 +49,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1">Email</h3>
-                  <a href="mailto:hello@example.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    hello@example.com
+                  <a href="mailto:mwangimoses372@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    mwangimoses372@gmail.com
                   </a>
                 </div>
               </div>
@@ -61,8 +61,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1">Phone</h3>
-                  <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                    +1 (555) 123-4567
+                  <a href="tel:+254742784172" className="text-muted-foreground hover:text-primary transition-colors">
+                    +254 742 784 172
                   </a>
                 </div>
               </div>
@@ -74,7 +74,7 @@ export default function Contact() {
                 <div>
                   <h3 className="font-bold text-lg mb-1">Location</h3>
                   <p className="text-muted-foreground">
-                    San Francisco, CA<br />Available for Remote Work
+                    Kijabe, Kenya<br />Available for Remote & On-Site Work
                   </p>
                 </div>
               </div>

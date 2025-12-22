@@ -23,7 +23,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight tracking-tight mb-6"
             >
-              Crafting digital experiences with purpose and <span className="text-primary italic">precision</span>.
+              Transforming complex problems into <span className="text-primary italic">efficient digital solutions</span>.
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -31,7 +31,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed"
             >
-              I'm Alex, a full-stack developer specializing in building exceptional digital products. I focus on clean code, user-centric design, and scalable architecture.
+              I'm Moses Mwangi Kamau, a full-stack developer and systems specialist with proven ability to build scalable web applications. National competition winner combining technical expertise with effective problem-solving and strong communication skills.
             </motion.p>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}

@@ -20,7 +20,7 @@ export function Navigation() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <Link href="/">
           <span className="font-display text-2xl font-bold cursor-pointer tracking-tighter hover:text-primary transition-colors">
-            Alex.
+            Moses.
           </span>
         </Link>
 
@@ -41,7 +41,7 @@ export function Navigation() {
             </Link>
           ))}
           <a
-            href="https://github.com"
+            href="https://github.com/MosesCodeX-CS"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-4 px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:bg-primary/90 transition-all hover:scale-105"

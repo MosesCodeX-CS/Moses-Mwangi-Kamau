@@ -6,9 +6,9 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2">
-            <h2 className="font-display text-2xl font-bold mb-4">Let's build something amazing.</h2>
+            <h2 className="font-display text-2xl font-bold mb-4">Let's build something amazing together.</h2>
             <p className="text-muted-foreground max-w-md">
-              I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
+              I'm always open to discussing new projects, innovative solutions, and opportunities to contribute to dynamic ventures. Let's create something extraordinary.
             </p>
           </div>
           
@@ -25,16 +25,13 @@ export function Footer() {
           <div>
             <h3 className="font-bold mb-4 text-sm uppercase tracking-wider text-primary">Socials</h3>
             <div className="flex gap-4">
-              <a href="#" className="p-2 bg-background rounded-full border border-border hover:border-primary hover:text-primary transition-colors">
+              <a href="https://github.com/MosesCodeX-CS" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full border border-border hover:border-primary hover:text-primary transition-colors">
                 <Github size={18} />
               </a>
-              <a href="#" className="p-2 bg-background rounded-full border border-border hover:border-primary hover:text-primary transition-colors">
-                <Twitter size={18} />
-              </a>
-              <a href="#" className="p-2 bg-background rounded-full border border-border hover:border-primary hover:text-primary transition-colors">
+              <a href="https://linkedin.com/in/moses-mwangi-a5a2a9316" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full border border-border hover:border-primary hover:text-primary transition-colors">
                 <Linkedin size={18} />
               </a>
-              <a href="mailto:hello@example.com" className="p-2 bg-background rounded-full border border-border hover:border-primary hover:text-primary transition-colors">
+              <a href="mailto:mwangimoses372@gmail.com" className="p-2 bg-background rounded-full border border-border hover:border-primary hover:text-primary transition-colors">
                 <Mail size={18} />
               </a>
             </div>
@@ -42,7 +39,7 @@ export function Footer() {
         </div>
         
         <div className="border-t border-border/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Alex Developer. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Moses Mwangi Kamau. All rights reserved.</p>
           <p className="mt-2 md:mt-0 font-mono text-xs">Built with React & TypeScript</p>
         </div>
       </div>
