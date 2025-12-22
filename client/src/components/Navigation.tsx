@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -41,10 +41,18 @@ export function Navigation() {
             </Link>
           ))}
           <a
+            href="/api/download-cv"
+            download="Moses-Mwangi-CV.txt"
+            className="ml-2 px-4 py-2 bg-accent text-accent-foreground text-sm font-medium rounded-full hover:bg-accent/90 transition-all flex items-center gap-2"
+          >
+            <Download size={16} />
+            CV
+          </a>
+          <a
             href="https://github.com/MosesCodeX-CS"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-4 px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:bg-primary/90 transition-all hover:scale-105"
+            className="ml-2 px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:bg-primary/90 transition-all hover:scale-105"
           >
             GitHub
           </a>

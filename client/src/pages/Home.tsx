@@ -44,6 +44,11 @@ export default function Home() {
                   View Work <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
+              <a href="/api/download-cv" download="Moses-Mwangi-CV.txt">
+                <Button variant="secondary" size="lg" className="rounded-full px-8 text-base">
+                  Download CV
+                </Button>
+              </a>
               <Link href="/contact">
                 <Button variant="outline" size="lg" className="rounded-full px-8 text-base bg-background/50 backdrop-blur-sm">
                   Contact Me

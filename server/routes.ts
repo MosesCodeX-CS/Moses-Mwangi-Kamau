@@ -150,5 +150,55 @@ export async function registerRoutes(
     }
   });
 
+  // CV Download endpoint
+  app.get("/api/download-cv", async (req, res) => {
+    const experiences = await storage.getExperiences();
+    const skills = await storage.getSkills();
+
+    const cv = `MOSES MWANGI KAMAU
+Software Developer | Full-Stack Web & Systems Specialist
+
+CONTACT INFORMATION
+Phone: +254 742 784 172
+Email: mwangimoses372@gmail.com
+Location: Kijabe, Kenya
+GitHub: github.com/MosesCodeX-CS
+LinkedIn: linkedin.com/in/moses-mwangi-a5a2a9316
+
+PROFESSIONAL SUMMARY
+Innovative software developer with proven ability to transform complex problems into efficient digital solutions. Combines technical expertise in full-stack development with strong analytical thinking and effective communication skills. Demonstrated excellence through national competition victories and practical implementation of real-world systems.
+
+PROFESSIONAL EXPERIENCE
+${experiences.map(exp => `${exp.role}
+${exp.company} | ${exp.duration}
+${exp.description}`).join("\n\n")}
+
+TECHNICAL SKILLS
+${["Languages", "Backend", "Frontend", "Database", "Tools", "Professional"]
+  .map(category => {
+    const categorySkills = skills.filter(s => s.category === category);
+    if (categorySkills.length === 0) return "";
+    return `${category}:\n${categorySkills.map(s => `• ${s.name} (${s.proficiency}%)`).join("\n")}`;
+  })
+  .filter(Boolean)
+  .join("\n\n")}
+
+ACHIEVEMENTS & COMPETITIONS
+• Gold Medal – ICT Web Development (KATTI National TVET Fairs & Competitions, 2025)
+• Silver Medal – ICT Software Solutions for Business (KATTI Research & Innovation Competitions, 2025)
+
+EDUCATION
+Nachu Technical and Vocational College
+Diploma in Internet Communication Technology (ICT)
+2023 – 2026 (Expected)
+
+---
+Generated from portfolio: moses-dev.replit.dev`;
+
+    res.setHeader("Content-Disposition", "attachment; filename=Moses-Mwangi-CV.txt");
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.send(cv);
+  });
+
   return httpServer;
 }
