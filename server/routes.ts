@@ -8,62 +8,42 @@ async function seedDatabase() {
   const existingProjects = await storage.getProjects();
   if (existingProjects.length === 0) {
     await storage.createProject({
-      title: "E-commerce Analytics Dashboard",
-      description: "A real-time dashboard for tracking sales, user engagement, and inventory levels. Built with React and Recharts.",
-      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2426&q=80",
+      title: "WiFi Billing Management System",
+      description: "A comprehensive billing and management system for WiFi services. Automated billing calculations, customer management, and real-time usage tracking.",
+      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
       projectUrl: "#",
       repoUrl: "#",
-      tags: ["React", "TypeScript", "D3.js", "Node.js"],
+      tags: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
       featured: true
     });
     
     await storage.createProject({
-      title: "Social Connect App",
-      description: "A modern social media platform connecting professionals. Features real-time messaging and feed updates.",
-      imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=2374&q=80",
+      title: "Supermarket POS System",
+      description: "Full-featured Point of Sale system for retail management. Handles transactions, inventory tracking, sales reports, and customer management with an intuitive interface.",
+      imageUrl: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
       projectUrl: "#",
       repoUrl: "#",
-      tags: ["Vue.js", "Firebase", "Tailwind"],
+      tags: ["Python", "Django", "PostgreSQL", "JavaScript"],
       featured: true
     });
 
     await storage.createProject({
-      title: "Task Master AI",
-      description: "AI-powered task management application that automatically prioritizes your daily workflow.",
-      imageUrl: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2372&q=80",
+      title: "Kenyan Phishing Detector",
+      description: "Web security tool that detects and warns users about phishing websites targeting Kenyan users. Uses pattern recognition and machine learning techniques.",
+      imageUrl: "https://images.unsplash.com/photo-1563206766-5b64e2b84a71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
       projectUrl: "#",
       repoUrl: "#",
-      tags: ["Next.js", "OpenAI API", "Prisma"],
+      tags: ["Python", "BeautifulSoup", "JavaScript", "Security"],
       featured: false
     });
 
     await storage.createProject({
-      title: "Design System Component Library",
-      description: "Comprehensive React component library with 50+ customizable components. Includes documentation, storybook integration, and accessibility features.",
-      imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
+      title: "E-Commerce Platform",
+      description: "Complete e-commerce solution featuring product catalog, shopping cart, order management, and payment integration for online retail businesses.",
+      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
       projectUrl: "#",
       repoUrl: "#",
-      tags: ["React", "Storybook", "TypeScript", "CSS-in-JS"],
-      featured: false
-    });
-
-    await storage.createProject({
-      title: "Video Streaming Platform",
-      description: "Scalable video streaming platform with adaptive bitrate streaming, user recommendations, and real-time chat integration.",
-      imageUrl: "https://images.unsplash.com/photo-1533613220915-8f00cce9fda0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
-      projectUrl: "#",
-      repoUrl: "#",
-      tags: ["Node.js", "PostgreSQL", "WebSocket", "FFmpeg"],
-      featured: false
-    });
-
-    await storage.createProject({
-      title: "Mobile Fitness Tracker",
-      description: "Native iOS and Android fitness tracking app with workout planning, nutrition tracking, and social challenges.",
-      imageUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
-      projectUrl: "#",
-      repoUrl: "#",
-      tags: ["React Native", "Firebase", "GraphQL", "Redux"],
+      tags: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
       featured: false
     });
   }
@@ -71,23 +51,29 @@ async function seedDatabase() {
   const existingSkills = await storage.getSkills();
   if (existingSkills.length === 0) {
     const skills = [
-      { name: "PHP", category: "Languages", proficiency: 90 },
-      { name: "Python", category: "Languages", proficiency: 90 },
-      { name: "JavaScript", category: "Languages", proficiency: 90 },
-      { name: "SQL", category: "Languages", proficiency: 80 },
+      { name: "PHP", category: "Languages", proficiency: 95 },
+      { name: "Python", category: "Languages", proficiency: 95 },
+      { name: "JavaScript", category: "Languages", proficiency: 95 },
+      { name: "HTML5", category: "Languages", proficiency: 90 },
+      { name: "CSS3", category: "Languages", proficiency: 90 },
+      { name: "SQL", category: "Languages", proficiency: 85 },
       { name: "TypeScript", category: "Languages", proficiency: 75 },
-      { name: "HTML5", category: "Languages", proficiency: 85 },
-      { name: "CSS3", category: "Languages", proficiency: 85 },
-      { name: "Django", category: "Frameworks", proficiency: 85 },
-      { name: "Bootstrap", category: "Frameworks", proficiency: 85 },
-      { name: "jQuery", category: "Frameworks", proficiency: 70 },
-      { name: "MySQL", category: "Database", proficiency: 85 },
-      { name: "PostgreSQL", category: "Database", proficiency: 75 },
-      { name: "Git", category: "Tools", proficiency: 85 },
-      { name: "GitHub", category: "Tools", proficiency: 85 },
-      { name: "Docker", category: "Tools", proficiency: 75 },
-      { name: "Linux", category: "Tools", proficiency: 80 },
-      { name: "REST APIs", category: "Frameworks", proficiency: 80 },
+      { name: "Bash Scripting", category: "Languages", proficiency: 70 },
+      { name: "Django", category: "Backend", proficiency: 90 },
+      { name: "REST APIs", category: "Backend", proficiency: 85 },
+      { name: "Bootstrap", category: "Frontend", proficiency: 90 },
+      { name: "jQuery", category: "Frontend", proficiency: 80 },
+      { name: "MySQL", category: "Database", proficiency: 90 },
+      { name: "PostgreSQL", category: "Database", proficiency: 85 },
+      { name: "Git", category: "Tools", proficiency: 90 },
+      { name: "GitHub", category: "Tools", proficiency: 90 },
+      { name: "Docker", category: "Tools", proficiency: 80 },
+      { name: "Linux", category: "Tools", proficiency: 85 },
+      { name: "VS Code", category: "Tools", proficiency: 90 },
+      { name: "Apache", category: "Tools", proficiency: 75 },
+      { name: "Problem Solving", category: "Professional", proficiency: 95 },
+      { name: "Project Management", category: "Professional", proficiency: 85 },
+      { name: "Communication", category: "Professional", proficiency: 90 },
     ];
     for (const skill of skills) {
       await storage.createSkill(skill);
@@ -106,7 +92,13 @@ async function seedDatabase() {
       role: "ICT Technical Support",
       company: "Kijabe Hospital",
       duration: "January 2025 – April 2025",
-      description: "Provided technical support and system maintenance for hospital ICT infrastructure. Assisted in resolving network and software issues to ensure seamless operations. Supported healthcare staff with IT-related challenges."
+      description: "Provided technical support and system maintenance for hospital ICT infrastructure. Resolved network and software issues, ensuring seamless operations. Supported healthcare staff with IT-related challenges and system optimization."
+    });
+    await storage.createExperience({
+      role: "Student | Diploma in Internet Communication Technology",
+      company: "Nachu Technical and Vocational College",
+      duration: "2023 – 2026 (Expected)",
+      description: "Pursuing advanced technical education in ICT. Gold Medal winner in ICT Web Development at KATTI National TVET Fairs & Competitions 2025. Silver Medal in ICT Software Solutions for Business. Academic Secretary of Student Council."
     });
   }
 }
