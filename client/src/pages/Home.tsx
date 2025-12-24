@@ -1,13 +1,15 @@
 import { PageTransition } from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, Code, Layout, Smartphone, Award, Target, Zap, Quote } from "lucide-react";
+import { ArrowRight, Code, Layout, Smartphone, Award, Target, Zap, Quote, Upload } from "lucide-react";
 import { motion } from "framer-motion";
 import { useProjects } from "@/hooks/use-portfolio";
 import { ProjectCard } from "@/components/ProjectCard";
+import { useState } from "react";
 
 export default function Home() {
   const { data: projects, isLoading } = useProjects();
+  const [profileImage, setProfileImage] = useState<string | null>(null);
   const featuredProjects = projects?.filter(p => p.featured).slice(0, 3);
 
   const stats = [
@@ -17,50 +19,117 @@ export default function Home() {
     { number: "100%", label: "Client Satisfaction", suffix: "" }
   ];
 
+  const handleProfileImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setProfileImage(event.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <PageTransition>
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 lg:py-32">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-background to-background"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight tracking-tight mb-6"
-            >
-              Transforming complex problems into <span className="text-primary italic">efficient digital solutions</span>.
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed"
-            >
-              I'm Moses Mwangi Kamau, a full-stack developer and systems specialist with proven ability to build scalable web applications. National competition winner combining technical expertise with effective problem-solving and strong communication skills.
-            </motion.p>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Text Content */}
+            <div>
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight tracking-tight mb-6"
+              >
+                Transforming complex problems into <span className="text-primary italic">efficient digital solutions</span>.
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-lg text-muted-foreground mb-8 max-w-2xl leading-relaxed"
+              >
+                I'm Moses Mwangi Kamau, a full-stack developer and systems specialist with proven ability to build scalable web applications. National competition winner combining technical expertise with effective problem-solving and strong communication skills.
+              </motion.p>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Link href="/projects">
+                  <Button size="lg" className="rounded-full px-8 text-base">
+                    View Work <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <a href="/api/download-cv" download="Moses-Mwangi-CV.txt">
+                  <Button variant="secondary" size="lg" className="rounded-full px-8 text-base">
+                    Download CV
+                  </Button>
+                </a>
+                <Link href="/contact">
+                  <Button variant="outline" size="lg" className="rounded-full px-8 text-base bg-background/50 backdrop-blur-sm">
+                    Contact Me
+                  </Button>
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Right: Profile Picture */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-wrap gap-4"
+              className="relative flex items-center justify-center"
             >
-              <Link href="/projects">
-                <Button size="lg" className="rounded-full px-8 text-base">
-                  View Work <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <a href="/api/download-cv" download="Moses-Mwangi-CV.txt">
-                <Button variant="secondary" size="lg" className="rounded-full px-8 text-base">
-                  Download CV
-                </Button>
-              </a>
-              <Link href="/contact">
-                <Button variant="outline" size="lg" className="rounded-full px-8 text-base bg-background/50 backdrop-blur-sm">
-                  Contact Me
-                </Button>
-              </Link>
+              <div className="relative w-full max-w-md">
+                {/* Animated background circles */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-3xl"></div>
+                <div className="absolute -inset-1 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 rounded-3xl animate-pulse"></div>
+
+                {/* Profile Picture Container */}
+                <div className="relative">
+                  <div className="aspect-square rounded-3xl overflow-hidden border-4 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5 shadow-2xl">
+                    {profileImage ? (
+                      <img 
+                        src={profileImage} 
+                        alt="Profile" 
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <label className="w-full h-full flex flex-col items-center justify-center cursor-pointer hover:bg-primary/5 transition-colors group">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleProfileImageUpload}
+                          className="hidden"
+                        />
+                        <Upload className="w-12 h-12 text-muted-foreground group-hover:text-primary transition-colors mb-3" />
+                        <span className="text-center">
+                          <p className="font-semibold text-foreground">Click to upload</p>
+                          <p className="text-xs text-muted-foreground">or drag & drop</p>
+                          <p className="text-xs text-muted-foreground mt-1">PNG, JPG up to 5MB</p>
+                        </span>
+                      </label>
+                    )}
+                  </div>
+                  
+                  {/* Achievement Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.5, duration: 0.3 }}
+                    className="absolute -bottom-6 -right-6 bg-accent text-accent-foreground px-6 py-3 rounded-full font-bold shadow-lg flex items-center gap-2 border-2 border-background"
+                  >
+                    <Award className="w-5 h-5" />
+                    <span>Award Winner</span>
+                  </motion.div>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -95,14 +164,84 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services/Skills Preview */}
+      {/* Skills Section with Progress Bars */}
       <section className="py-20 bg-muted/30 border-y border-border/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-12">Core Skills</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {[
+                { category: "Frontend", skills: [
+                  { name: "React & TypeScript", level: 95 },
+                  { name: "Responsive Design", level: 92 },
+                  { name: "CSS/Tailwind", level: 90 }
+                ] },
+                { category: "Backend", skills: [
+                  { name: "Django & Node.js", level: 93 },
+                  { name: "Database Design", level: 88 },
+                  { name: "API Architecture", level: 91 }
+                ] },
+                { category: "Tools & DevOps", skills: [
+                  { name: "Git & Docker", level: 87 },
+                  { name: "System Design", level: 89 },
+                  { name: "Performance Optimization", level: 86 }
+                ] },
+                { category: "Soft Skills", skills: [
+                  { name: "Problem Solving", level: 95 },
+                  { name: "Communication", level: 92 },
+                  { name: "Project Management", level: 88 }
+                ] }
+              ].map((skillGroup, groupIdx) => (
+                <motion.div
+                  key={groupIdx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: groupIdx * 0.1 }}
+                >
+                  <h3 className="text-xl font-bold mb-6 text-foreground">{skillGroup.category}</h3>
+                  <div className="space-y-5">
+                    {skillGroup.skills.map((skill, skillIdx) => (
+                      <motion.div
+                        key={skillIdx}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: groupIdx * 0.1 + skillIdx * 0.05 }}
+                      >
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-sm font-medium text-foreground">{skill.name}</span>
+                          <span className="text-xs font-semibold text-primary">{skill.level}%</span>
+                        </div>
+                        <div className="w-full bg-muted rounded-full h-2.5 overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${skill.level}%` }}
+                            viewport={{ once: true }}
+                            transition={{ delay: groupIdx * 0.1 + skillIdx * 0.1 + 0.2, duration: 0.8 }}
+                            className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
+                          ></motion.div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services/Skills Preview */}
+      <section className="py-20 border-y border-border/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-12">What I Offer</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { icon: Layout, title: "Frontend Development", desc: "Creating beautiful, responsive interfaces with React, Vue, and modern CSS." },
               { icon: Code, title: "Backend Architecture", desc: "Building robust APIs and server-side logic with Node.js, Python, and Go." },
-              { icon: Smartphone, title: "Mobile Apps", desc: "Developing native-feeling mobile experiences using React Native and Flutter." }
+              { icon: Smartphone, title: "Full Stack Solutions", desc: "End-to-end development from database to user interface with seamless integration." }
             ].map((service, idx) => (
               <motion.div 
                 key={idx}
@@ -110,12 +249,12 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-background p-8 rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow"
+                className="group bg-background p-8 rounded-2xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:-translate-y-1"
               >
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6">
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary/20 transition-colors">
                   <service.icon size={24} />
                 </div>
-                <h3 className="text-xl font-bold font-display mb-3">{service.title}</h3>
+                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
                 <p className="text-muted-foreground">{service.desc}</p>
               </motion.div>
             ))}
@@ -123,50 +262,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Achievements */}
-      <section className="py-20 lg:py-32 bg-primary/5 border-y border-border/50">
+      {/* Featured Projects */}
+      <section className="py-20 bg-muted/30 border-y border-border/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Achievements & Recognition</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Recognized nationally for excellence in web development and innovative solutions.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { icon: Award, title: "Gold Medal", desc: "ICT Web Development at KATTI National TVET Fairs & Competitions 2025", color: "text-yellow-600" },
-              { icon: Target, title: "Silver Medal", desc: "ICT Software Solutions for Business at KATTI Research & Innovation Competitions 2025", color: "text-slate-400" },
-              { icon: Zap, title: "5+ Projects Deployed", desc: "Full-stack solutions for local businesses with 95%+ bug-free deployment", color: "text-blue-600" }
-            ].map((achievement, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-background p-8 rounded-2xl border border-border hover:border-primary/50 transition-all hover:shadow-lg"
-              >
-                <div className={`w-14 h-14 ${achievement.color} rounded-xl flex items-center justify-center mb-6 bg-opacity-10`}>
-                  <achievement.icon size={28} className={achievement.color} />
-                </div>
-                <h3 className="text-xl font-bold font-display mb-3">{achievement.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{achievement.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Work */}
-      <section className="py-20 lg:py-32">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Selected Work</h2>
-              <p className="text-muted-foreground">Some of my favorite projects.</p>
-            </div>
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-3xl md:text-4xl font-display font-bold">Featured Projects</h2>
             <Link href="/projects">
-              <Button variant="ghost" className="hidden md:flex group">
-                View All <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <Button variant="outline" className="rounded-full">
+                View All <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
@@ -225,7 +328,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-card p-8 rounded-2xl border border-border hover:border-primary/50 transition-all"
+                className="bg-card p-8 rounded-2xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:-translate-y-1"
               >
                 <div className="flex gap-1 mb-4">
                   <Quote className="w-5 h-5 text-primary opacity-40" />
@@ -282,7 +385,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.05 }}
-                className="p-6 rounded-xl border border-border hover:border-primary/50 transition-all bg-card"
+                className="p-6 rounded-xl border border-border hover:border-primary/50 transition-all bg-card hover:shadow-md hover:-translate-y-0.5"
               >
                 <h3 className="font-bold text-lg text-foreground mb-2">{item.q}</h3>
                 <p className="text-muted-foreground leading-relaxed">{item.a}</p>

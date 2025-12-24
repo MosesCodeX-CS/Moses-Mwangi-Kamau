@@ -1,9 +1,11 @@
 import { PageTransition } from "@/components/PageTransition";
 import { motion } from "framer-motion";
-import { Calendar, ArrowRight } from "lucide-react";
+import { Calendar, ArrowRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export default function Blog() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const articles = [
     {
       id: 1,
@@ -63,6 +65,10 @@ export default function Blog() {
 
   const categories = ["All", "Backend", "Frontend", "Security", "Database", "System Design", "Insights"];
 
+  const filteredArticles = selectedCategory && selectedCategory !== "All" 
+    ? articles.filter(a => a.category === selectedCategory)
+    : articles;
+
   return (
     <PageTransition>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
@@ -87,7 +93,12 @@ export default function Blog() {
           {categories.map((cat) => (
             <button
               key={cat}
-              className="px-4 py-2 rounded-full border border-border text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+              onClick={() => setSelectedCategory(selectedCategory === cat ? null : cat)}
+              className={`px-4 py-2 rounded-full border text-sm font-medium transition-all ${
+                (selectedCategory === cat || (cat === "All" && !selectedCategory))
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "border-border text-muted-foreground hover:border-primary hover:text-primary"
+              }`}
             >
               {cat}
             </button>
@@ -95,14 +106,14 @@ export default function Blog() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {articles.map((article, idx) => (
+          {filteredArticles.map((article, idx) => (
             <motion.div
               key={article.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
-              className="group rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all hover:shadow-lg bg-card"
+              className="group rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:-translate-y-1 bg-card cursor-pointer"
             >
               <div className="relative overflow-hidden h-48 bg-muted">
                 <img
@@ -140,6 +151,17 @@ export default function Blog() {
             </motion.div>
           ))}
         </div>
+
+        {filteredArticles.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-20"
+          >
+            <Zap className="w-12 h-12 text-muted-foreground mx-auto mb-4 opacity-50" />
+            <p className="text-muted-foreground text-lg">No articles found in this category yet.</p>
+          </motion.div>
+        )}
       </div>
     </PageTransition>
   );
