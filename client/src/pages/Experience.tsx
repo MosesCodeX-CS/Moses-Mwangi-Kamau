@@ -30,7 +30,9 @@ export default function Experience() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div className="max-w-4xl mx-auto">
           <div className="mb-16 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">Experience & Skills</h1>
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Experience & Skills</span>
+            </h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
               My professional journey and technical arsenal. I'm constantly learning and expanding my skillset.
             </p>

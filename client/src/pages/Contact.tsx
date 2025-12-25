@@ -76,7 +76,9 @@ export default function Contact() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="flex flex-col justify-center">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">Get in Touch</h1>
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Get in Touch</span>
+            </h1>
             <p className="text-xl text-muted-foreground mb-12">
               Have a project in mind or want to collaborate? I'm always interested in discussing new opportunities and innovative solutions.
             </p>

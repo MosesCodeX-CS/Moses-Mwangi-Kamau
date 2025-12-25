@@ -1,7 +1,8 @@
 import { PageTransition } from "@/components/PageTransition";
 import { motion } from "framer-motion";
-import { Code, Briefcase, Target, Heart } from "lucide-react";
+import { Code, Briefcase, Target, Heart, Lightbulb, Award } from "lucide-react";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { Timeline } from "@/components/Timeline";
 
 export default function About() {
   return (
@@ -113,6 +114,41 @@ export default function About() {
             ))}
           </motion.div>
 
+          {/* Journey Timeline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mt-20 mb-20"
+          >
+            <h2 className="text-3xl font-display font-bold mb-12">My Journey</h2>
+            <Timeline
+              items={[
+                {
+                  year: "2020",
+                  title: "Started Learning Web Development",
+                  description: "Began self-learning HTML, CSS, and JavaScript, building first projects and establishing foundation."
+                },
+                {
+                  year: "2023",
+                  title: "Enrolled in Technical College",
+                  description: "Pursuing Diploma in Internet Communication Technology at Nachu Technical and Vocational College."
+                },
+                {
+                  year: "2024",
+                  title: "National Competition Winner",
+                  description: "Won gold medal in KATTI national web development competition against 50+ institutions."
+                },
+                {
+                  year: "2024",
+                  title: "Shipped 5+ Production Apps",
+                  description: "Delivered WiFi billing systems, POS applications, and full-stack solutions for real clients."
+                }
+              ]}
+            />
+          </motion.div>
+
           {/* Tech Stack */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -121,7 +157,9 @@ export default function About() {
             transition={{ duration: 0.5 }}
             className="mt-16"
           >
-            <h2 className="text-3xl font-display font-bold mb-8">Technology Stack</h2>
+            <h2 className="text-3xl font-display font-bold mb-8">
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Technology Stack</span>
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 { title: "Languages", items: ["PHP", "Python", "JavaScript", "SQL", "HTML/CSS"] },

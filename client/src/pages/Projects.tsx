@@ -3,6 +3,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { useProjects } from "@/hooks/use-portfolio";
 import { motion } from "framer-motion";
 import { useState, useMemo } from "react";
+import { Badge } from "@/components/ui/badge";
 
 export default function Projects() {
   const { data: projects, isLoading } = useProjects();
@@ -26,12 +27,45 @@ export default function Projects() {
     <PageTransition>
       <section className="py-12 md:py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-16">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">My Work</h1>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-2xl mb-16"
+          >
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">My Work</span>
+            </h1>
             <p className="text-xl text-muted-foreground">
               A collection of projects exploring different technologies, design patterns, and problem-solving approaches.
             </p>
-          </div>
+          </motion.div>
+
+          {/* Project Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 p-6 rounded-xl bg-muted/30 border border-border"
+          >
+            {[
+              { label: "Total Projects", value: filteredProjects?.length || 0 },
+              { label: "Technologies", value: allTags.length },
+              { label: "Deployed", value: filteredProjects?.filter(p => p.featured).length || 0 },
+            ].map((stat, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="text-center"
+              >
+                <div className="text-2xl md:text-3xl font-bold text-primary">{stat.value}</div>
+                <p className="text-xs md:text-sm text-muted-foreground mt-1">{stat.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
 
           {/* Filter Tags */}
           <motion.div
