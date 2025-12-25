@@ -239,11 +239,12 @@ export default function Home() {
       {/* Services/Skills Preview */}
       <section className="py-20 border-y border-border/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-12">What I Offer</h2>
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">What I Offer</h2>
+          <p className="text-muted-foreground mb-12 max-w-2xl">Comprehensive solutions tailored to turn your vision into reality with cutting-edge technology.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: Layout, title: "Frontend Development", desc: "Creating beautiful, responsive interfaces with React, Vue, and modern CSS." },
-              { icon: Code, title: "Backend Architecture", desc: "Building robust APIs and server-side logic with Node.js, Python, and Go." },
+              { icon: Layout, title: "Frontend Development", desc: "Creating beautiful, responsive interfaces with React, Vue, and modern CSS that engage users." },
+              { icon: Code, title: "Backend Architecture", desc: "Building robust APIs and server-side logic with Node.js, Python, and Go for reliability." },
               { icon: Smartphone, title: "Full Stack Solutions", desc: "End-to-end development from database to user interface with seamless integration." }
             ].map((service, idx) => (
               <motion.div 
@@ -252,13 +253,15 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="group bg-background p-8 rounded-2xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:-translate-y-1"
+                whileHover={{ y: -12 }}
+                className="group relative overflow-hidden bg-background p-8 rounded-2xl border border-border hover:border-primary/50 transition-all hover:shadow-2xl"
               >
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary/20 transition-colors">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary/20 transition-colors">
                   <service.icon size={24} />
                 </div>
-                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
-                <p className="text-muted-foreground">{service.desc}</p>
+                <h3 className="relative z-10 text-xl font-bold font-display mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
+                <p className="relative z-10 text-muted-foreground">{service.desc}</p>
               </motion.div>
             ))}
           </div>

@@ -1,8 +1,9 @@
 import { PageTransition } from "@/components/PageTransition";
 import { motion } from "framer-motion";
-import { Code, Briefcase, Target, Heart, Lightbulb, Award } from "lucide-react";
+import { Code, Briefcase, Target, Heart, Lightbulb, Award, Zap, Shield } from "lucide-react";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { Timeline } from "@/components/Timeline";
+import { SkillCard } from "@/components/SkillCard";
 
 export default function About() {
   return (
@@ -32,15 +33,30 @@ export default function About() {
             >
               <h2 className="text-3xl font-display font-bold mb-6">My Journey</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                >
                   I started my tech journey with a passion for solving problems and creating tools that make a difference. What began as curiosity has evolved into a professional career in full-stack development.
-                </p>
-                <p>
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                >
                   Currently pursuing a Diploma in Internet Communication Technology at Nachu Technical and Vocational College, I've already shipped 5+ production applications and won national recognition for my technical excellence.
-                </p>
-                <p>
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                >
                   My approach combines technical expertise with creative problem-solving. I believe in writing clean, maintainable code and designing user-centric solutions that deliver real value.
-                </p>
+                </motion.p>
               </div>
             </motion.div>
 
@@ -149,17 +165,58 @@ export default function About() {
             />
           </motion.div>
 
+          {/* Specialty Areas */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mt-20"
+          >
+            <h2 className="text-3xl font-display font-bold mb-12">
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">What I Specialize In</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <SkillCard
+                title="Full-Stack Web Development"
+                description="Building complete web applications from database design to responsive frontends."
+                icon={<Code size={28} />}
+                technologies={["React", "Node.js", "Django", "PostgreSQL"]}
+                index={0}
+              />
+              <SkillCard
+                title="API & System Design"
+                description="Architecting scalable APIs and robust backend systems for production use."
+                icon={<Zap size={28} />}
+                technologies={["REST APIs", "GraphQL", "Microservices", "Docker"]}
+                index={1}
+              />
+              <SkillCard
+                title="Database Architecture"
+                description="Designing efficient databases and optimizing queries for performance."
+                icon={<Briefcase size={28} />}
+                technologies={["PostgreSQL", "MySQL", "Query Optimization", "Data Modeling"]}
+                index={2}
+              />
+              <SkillCard
+                title="Security & Best Practices"
+                description="Implementing security measures and following industry standards."
+                icon={<Shield size={28} />}
+                technologies={["Authentication", "Data Protection", "XSS Prevention", "Git"]}
+                index={3}
+              />
+            </div>
+          </motion.div>
+
           {/* Tech Stack */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mt-16"
+            className="mt-20"
           >
-            <h2 className="text-3xl font-display font-bold mb-8">
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Technology Stack</span>
-            </h2>
+            <h2 className="text-3xl font-display font-bold mb-8">Technology Stack</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 { title: "Languages", items: ["PHP", "Python", "JavaScript", "SQL", "HTML/CSS"] },

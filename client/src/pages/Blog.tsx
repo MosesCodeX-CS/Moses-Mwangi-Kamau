@@ -78,7 +78,9 @@ export default function Blog() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">Insights & Articles</h1>
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Insights & Articles</span>
+          </h1>
           <p className="text-xl text-muted-foreground max-w-2xl">
             Technical articles, development insights, and lessons learned from building production applications.
           </p>
