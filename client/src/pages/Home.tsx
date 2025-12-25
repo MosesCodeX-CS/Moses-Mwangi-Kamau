@@ -46,7 +46,7 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight tracking-tight mb-6"
               >
-                Transforming complex problems into <span className="text-primary italic">efficient digital solutions</span>.
+                Transforming complex problems into <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent italic">efficient digital solutions</span>.
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
@@ -63,7 +63,7 @@ export default function Home() {
                 className="flex flex-wrap gap-4"
               >
                 <Link href="/projects">
-                  <Button size="lg" className="rounded-full px-8 text-base">
+                  <Button size="lg" className="rounded-full px-8 text-base hover:scale-105 transition-transform">
                     View Work <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -303,7 +303,9 @@ export default function Home() {
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">What People Say</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">What People Say</span>
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">Recognized by clients and judges for technical excellence and professional delivery.</p>
           </div>
 
@@ -438,7 +440,9 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center max-w-2xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary-foreground mb-6">Ready to Build Your Next Project?</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary-foreground mb-6">
+              Ready to <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Build Your Next Project?</span>
+            </h2>
             <p className="text-lg text-primary-foreground/90 mb-8">Let's collaborate on something amazing. I'm ready to help bring your vision to life.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
