@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
@@ -71,6 +72,7 @@ function App() {
             <Router />
           </main>
           <Footer />
+          <ScrollToTop />
         </div>
         <Toaster />
       </TooltipProvider>

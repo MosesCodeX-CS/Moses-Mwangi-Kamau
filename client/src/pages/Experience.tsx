@@ -36,6 +36,38 @@ export default function Experience() {
             </p>
           </div>
 
+          {/* Education Section */}
+          <div className="mb-20">
+            <h2 className="text-2xl font-display font-bold mb-8">Education</h2>
+            <div className="space-y-6">
+              {[
+                {
+                  school: "Nachu Technical and Vocational College",
+                  degree: "Diploma in Internet Communication Technology",
+                  period: "2023 - Present",
+                  details: "Focus on modern web development, networking, and system administration."
+                }
+              ].map((edu, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="p-6 rounded-xl border border-border bg-card hover:border-primary/50 transition-all"
+                >
+                  <div className="flex items-start justify-between mb-2">
+                    <h3 className="text-lg font-bold text-foreground">{edu.degree}</h3>
+                    <span className="text-sm font-mono text-muted-foreground bg-secondary/50 px-3 py-1 rounded">
+                      {edu.period}
+                    </span>
+                  </div>
+                  <p className="text-primary font-semibold mb-2">{edu.school}</p>
+                  <p className="text-muted-foreground">{edu.details}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-20">
             {/* Experience Column */}
             <div className="lg:col-span-2">
