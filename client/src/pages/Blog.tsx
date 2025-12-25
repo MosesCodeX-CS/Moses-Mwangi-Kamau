@@ -113,7 +113,7 @@ export default function Blog() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
-              className="group rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:-translate-y-1 bg-card cursor-pointer"
+              className="group rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all hover:shadow-2xl hover:-translate-y-2 bg-card cursor-pointer"
             >
               <div className="relative overflow-hidden h-48 bg-muted">
                 <img

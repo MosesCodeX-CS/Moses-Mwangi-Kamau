@@ -1,6 +1,7 @@
 import { PageTransition } from "@/components/PageTransition";
 import { motion } from "framer-motion";
 import { Code, Briefcase, Target, Heart } from "lucide-react";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 
 export default function About() {
   return (
@@ -87,10 +88,10 @@ export default function About() {
             className="grid grid-cols-1 md:grid-cols-4 gap-6 py-16 border-t border-b border-border"
           >
             {[
-              { number: "5+", label: "Projects Deployed" },
-              { number: "2", label: "National Awards" },
-              { number: "95%+", label: "Bug-Free Deployments" },
-              { number: "4", label: "Years of Tech" }
+              { number: 5, label: "Projects Deployed", suffix: "+" },
+              { number: 2, label: "National Awards", suffix: "" },
+              { number: 95, label: "Bug-Free Deployments", suffix: "%+" },
+              { number: 4, label: "Years of Tech", suffix: "" }
             ].map((stat, idx) => (
               <motion.div
                 key={idx}
@@ -100,7 +101,13 @@ export default function About() {
                 transition={{ delay: idx * 0.1 }}
                 className="text-center"
               >
-                <div className="text-4xl md:text-5xl font-display font-bold text-primary mb-2">{stat.number}</div>
+                <div className="text-4xl md:text-5xl font-display font-bold text-primary mb-2">
+                  <AnimatedCounter 
+                    target={stat.number}
+                    duration={2.5}
+                    suffix={stat.suffix}
+                  />
+                </div>
                 <div className="text-muted-foreground">{stat.label}</div>
               </motion.div>
             ))}

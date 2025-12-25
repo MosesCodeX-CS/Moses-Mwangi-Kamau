@@ -5,6 +5,7 @@ import { ArrowRight, Code, Layout, Smartphone, Award, Target, Zap, Quote, Upload
 import { motion } from "framer-motion";
 import { useProjects } from "@/hooks/use-portfolio";
 import { ProjectCard } from "@/components/ProjectCard";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { useState } from "react";
 
 export default function Home() {
@@ -139,27 +140,29 @@ export default function Home() {
       <section className="py-16 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 border-y border-border/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="text-center"
-              >
+            {stats.map((stat, idx) => {
+              const numValue = parseInt(stat.number.replace(/\D/g, ''));
+              return (
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.2, duration: 0.5 }}
-                  className="text-3xl md:text-4xl font-display font-bold text-primary mb-2"
+                  transition={{ delay: idx * 0.1 }}
+                  className="text-center"
                 >
-                  {stat.number}{stat.suffix}
+                  <div className="text-3xl md:text-4xl font-display font-bold text-primary mb-2">
+                    <AnimatedCounter 
+                      target={numValue}
+                      duration={2}
+                      suffix={stat.suffix}
+                    />
+                    {stat.number.includes('+') && '+'}
+                  </div>
+                  <p className="text-sm md:text-base text-muted-foreground font-medium">{stat.label}</p>
                 </motion.div>
-                <p className="text-sm md:text-base text-muted-foreground font-medium">{stat.label}</p>
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
