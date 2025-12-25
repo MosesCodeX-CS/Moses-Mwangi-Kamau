@@ -1,16 +1,14 @@
 import { PageTransition } from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, Code, Layout, Smartphone, Award, Target, Zap, Quote, Upload } from "lucide-react";
+import { ArrowRight, Code, Layout, Smartphone, Award, Target, Zap, Quote } from "lucide-react";
 import { motion } from "framer-motion";
 import { useProjects } from "@/hooks/use-portfolio";
 import { ProjectCard } from "@/components/ProjectCard";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
-import { useState } from "react";
 
 export default function Home() {
   const { data: projects, isLoading } = useProjects();
-  const [profileImage, setProfileImage] = useState<string | null>(null);
   const featuredProjects = projects?.filter(p => p.featured).slice(0, 3);
 
   const stats = [
@@ -19,17 +17,6 @@ export default function Home() {
     { number: "95", label: "Quality Score", suffix: "%" },
     { number: "100%", label: "Client Satisfaction", suffix: "" }
   ];
-
-  const handleProfileImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setProfileImage(event.target?.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   return (
     <PageTransition>
@@ -95,28 +82,11 @@ export default function Home() {
                 {/* Profile Picture Container */}
                 <div className="relative">
                   <div className="aspect-square rounded-3xl overflow-hidden border-4 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5 shadow-2xl">
-                    {profileImage ? (
-                      <img 
-                        src={profileImage} 
-                        alt="Profile" 
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <label className="w-full h-full flex flex-col items-center justify-center cursor-pointer hover:bg-primary/5 transition-colors group">
-                        <input
-                          type="file"
-                          accept="image/*"
-                          onChange={handleProfileImageUpload}
-                          className="hidden"
-                        />
-                        <Upload className="w-12 h-12 text-muted-foreground group-hover:text-primary transition-colors mb-3" />
-                        <span className="text-center">
-                          <p className="font-semibold text-foreground">Click to upload</p>
-                          <p className="text-xs text-muted-foreground">or drag & drop</p>
-                          <p className="text-xs text-muted-foreground mt-1">PNG, JPG up to 5MB</p>
-                        </span>
-                      </label>
-                    )}
+                    <img 
+                      src="/profile-image.jpg" 
+                      alt="Profile" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   
                   {/* Achievement Badge */}
