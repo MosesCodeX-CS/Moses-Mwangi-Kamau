@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, json } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -9,7 +9,8 @@ export const projects = pgTable("projects", {
   imageUrl: text("image_url").notNull(),
   projectUrl: text("project_url"),
   repoUrl: text("repo_url"),
-  tags: text("tags").array(),
+  // stored as JSONB in the database (array of strings)
+  tags: json("tags").$type<string[]>(),
   featured: boolean("featured").default(false),
 });
 
