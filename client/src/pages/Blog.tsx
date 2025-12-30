@@ -191,7 +191,7 @@ export default function Blog() {
             >
               <div className="relative overflow-hidden h-48 bg-muted">
                 <img
-                  src={article.image}
+                  src={article.image || '/profile-image.jpg'}
                   alt={article.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
