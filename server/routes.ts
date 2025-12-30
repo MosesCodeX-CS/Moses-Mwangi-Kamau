@@ -3,6 +3,7 @@ import type { Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
+import PDFDocument from "pdfkit";
 
 async function seedDatabase() {
   const existingProjects = await storage.getProjects();
@@ -195,9 +196,30 @@ Diploma in Internet Communication Technology (ICT)
 ---
 Generated from portfolio: moses-dev.replit.dev`;
 
-    res.setHeader("Content-Disposition", "attachment; filename=Moses-Mwangi-CV.txt");
-    res.setHeader("Content-Type", "text/plain; charset=utf-8");
-    res.send(cv);
+    // Stream a generated PDF instead of plain text
+    res.setHeader("Content-Disposition", "attachment; filename=Moses-Mwangi-CV.pdf");
+    res.setHeader("Content-Type", "application/pdf");
+
+    const doc = new PDFDocument({ margin: 50, size: "A4" });
+    doc.pipe(res);
+
+    const lines = cv.split("\n");
+    doc.fontSize(12).font("Helvetica");
+    for (const line of lines) {
+      if (line.trim() === "") {
+        doc.moveDown(0.5);
+        continue;
+      }
+      if (line === "MOSES MWANGI KAMAU") {
+        doc.fontSize(18).font("Helvetica-Bold").text(line);
+        doc.moveDown(0.2);
+        doc.fontSize(12).font("Helvetica");
+        continue;
+      }
+      doc.text(line, { lineGap: 2 });
+    }
+
+    doc.end();
   });
 
   return httpServer;

@@ -60,7 +60,7 @@ export function Navigation({ theme, onToggleTheme }: { theme: "light" | "dark", 
           </button>
           <a
             href="/api/download-cv"
-            download="Moses-Mwangi-CV.txt"
+            download="Moses-Mwangi-CV.pdf"
             className="ml-2 px-4 py-2 bg-accent text-accent-foreground text-sm font-medium rounded-full hover:bg-accent/90 transition-all flex items-center gap-2"
           >
             <Download size={16} />
@@ -123,7 +123,7 @@ export function Navigation({ theme, onToggleTheme }: { theme: "light" | "dark", 
               </button>
               <a
                 href="/api/download-cv"
-                download="Moses-Mwangi-CV.txt"
+                download="Moses-Mwangi-CV.pdf"
                 onClick={() => setIsOpen(false)}
                 className="mt-2 px-4 py-2 bg-accent text-accent-foreground text-sm font-medium rounded-full hover:bg-accent/90 transition-all flex items-center gap-2 justify-center"
               >

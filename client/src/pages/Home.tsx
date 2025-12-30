@@ -54,7 +54,7 @@ export default function Home() {
                     View Work <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
-                <a href="/api/download-cv" download="Moses-Mwangi-CV.txt">
+                <a href="/api/download-cv" download="Moses-Mwangi-CV.pdf">
                   <Button variant="secondary" size="lg" className="rounded-full px-8 text-base">
                     Download CV
                   </Button>
