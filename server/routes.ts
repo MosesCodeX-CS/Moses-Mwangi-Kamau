@@ -132,7 +132,7 @@ async function seedDatabase() {
 
     await pool.query(
       `UPDATE projects SET image_url = $1 WHERE title = $2`,
-      ['/profile-image.jpg', 'Portfolio Page'],
+      ['/profilepic.png', 'Portfolio Page'],
     );
 
     console.log('seed: updated image URLs for Kenyan Phishing Detector and Portfolio Page');
