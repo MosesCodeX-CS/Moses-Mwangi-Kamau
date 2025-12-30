@@ -83,7 +83,7 @@ export default function Home() {
                 <div className="relative">
                   <div className="aspect-square rounded-3xl overflow-hidden border-4 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5 shadow-2xl">
                     <img 
-                      src="/me.png" 
+                      src="/profilepicture.png" 
                       alt="Profile" 
                       className="w-full h-full object-cover"
                     />
