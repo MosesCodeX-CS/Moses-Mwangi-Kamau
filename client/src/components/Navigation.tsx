@@ -31,7 +31,7 @@ export function Navigation({ theme, onToggleTheme }: { theme: "light" | "dark", 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <Link href="/">
           <span className="font-display text-2xl font-bold cursor-pointer tracking-tighter hover:text-primary transition-colors">
-            Moses.
+            Moses Mwangi Kamau.
           </span>
         </Link>
 
