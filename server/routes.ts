@@ -193,34 +193,12 @@ Nachu Technical and Vocational College
 Diploma in Internet Communication Technology (ICT)
 2023 – 2026 (Expected)
 
----
 Generated from portfolio: moses-dev.replit.dev`;
 
-    // Stream a generated PDF instead of plain text
-    res.setHeader("Content-Disposition", "attachment; filename=Moses-Mwangi-CV.pdf");
-    res.setHeader("Content-Type", "application/pdf");
-
-    const PDFDocument = await import("pdfkit").then((m) => m.default || m);
-    const doc = new PDFDocument({ margin: 50, size: "A4" });
-    doc.pipe(res);
-
-    const lines = cv.split("\n");
-    doc.fontSize(12).font("Helvetica");
-    for (const line of lines) {
-      if (line.trim() === "") {
-        doc.moveDown(0.5);
-        continue;
-      }
-      if (line === "MOSES MWANGI KAMAU") {
-        doc.fontSize(18).font("Helvetica-Bold").text(line);
-        doc.moveDown(0.2);
-        doc.fontSize(12).font("Helvetica");
-        continue;
-      }
-      doc.text(line, { lineGap: 2 });
-    }
-
-    doc.end();
+      // If uploaded PDF is missing, fallback to providing a text (.txt) CV download
+      res.setHeader("Content-Disposition", "attachment; filename=Moses-Mwangi-CV.txt");
+      res.setHeader("Content-Type", "text/plain; charset=utf-8");
+      res.send(cv);
   });
 
   return httpServer;
