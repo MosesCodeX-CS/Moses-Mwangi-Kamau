@@ -8,6 +8,78 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const articles = [
     {
+      id: 7,
+      title: "Building an AI-Powered Kenyan Phishing Detector",
+      excerpt: "How I built a localized phishing detection pipeline: dataset curation, fine-tuning a transformer, and integrating it into a FastAPI + Streamlit demo.",
+      date: "Dec 30, 2025",
+      readTime: "10 min",
+      category: "Security",
+      image: "https://images.unsplash.com/photo-1591017070006-7a46a2ae7b18?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 8,
+      title: "Self-hosting Stockfish for Scalable Chess Analysis",
+      excerpt: "A practical guide to running Stockfish in Docker, integrating it with a FastAPI worker, and scaling analysis jobs with Celery.",
+      date: "Dec 28, 2025",
+      readTime: "8 min",
+      category: "AI",
+      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 9,
+      title: "Integrating M-Pesa with Billing & Checkout Systems",
+      excerpt: "Tips and pitfalls for integrating M-Pesa Daraja into billing platforms: callbacks, security, and reconciliation patterns.",
+      date: "Dec 26, 2025",
+      readTime: "9 min",
+      category: "Payments",
+      image: "https://images.unsplash.com/photo-1542223616-1b6a35f9b245?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 10,
+      title: "Designing Production-Ready Next.js Sites",
+      excerpt: "A checklist for building Next.js apps that are fast, accessible, and deploy-ready (CI, tests, and SEO).",
+      date: "Dec 24, 2025",
+      readTime: "7 min",
+      category: "Frontend",
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 11,
+      title: "Lessons from Building a PHP E-commerce Platform",
+      excerpt: "Architectural lessons and security considerations learned while building a full-featured PHP e-commerce system.",
+      date: "Dec 22, 2025",
+      readTime: "8 min",
+      category: "E-commerce",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 12,
+      title: "Building a Robust POS with Django",
+      excerpt: "How to design user roles, inventory flows, and reporting for a supermarket POS built with Django.",
+      date: "Dec 20, 2025",
+      readTime: "7 min",
+      category: "Backend",
+      image: "https://images.unsplash.com/photo-1581090462270-3c8be55b7f31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 13,
+      title: "Portfolio Design: From Wireframe to Deployed Site",
+      excerpt: "A practical case study on iterating on portfolio design, content strategy, and deploying with Vite/Vercel.",
+      date: "Dec 18, 2025",
+      readTime: "6 min",
+      category: "Design",
+      image: "https://images.unsplash.com/photo-1520975914249-0c68a47a8686?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 14,
+      title: "Automating Hotspot Billing Reconciliation",
+      excerpt: "How to design cron-driven reconciliation for hotspot billing and reconcile M-Pesa payments reliably.",
+      date: "Dec 16, 2025",
+      readTime: "8 min",
+      category: "DevOps",
+      image: "https://images.unsplash.com/photo-1526378721451-36b4b3dfb1db?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
       id: 1,
       title: "Building Scalable Web Applications with Django",
       excerpt: "Learn best practices for structuring large-scale Django applications, handling migrations, and optimizing database queries.",

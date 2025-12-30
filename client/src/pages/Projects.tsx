@@ -1,5 +1,6 @@
 import { PageTransition } from "@/components/PageTransition";
 import { ProjectCard } from "@/components/ProjectCard";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { useProjects } from "@/hooks/use-portfolio";
 import { motion } from "framer-motion";
 import { useState, useMemo } from "react";
@@ -48,23 +49,45 @@ export default function Projects() {
             viewport={{ once: true }}
             className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 p-6 rounded-xl bg-muted/30 border border-border"
           >
-            {[
-              { label: "Total Projects", value: filteredProjects?.length || 0 },
-              { label: "Technologies", value: allTags.length },
-              { label: "Deployed", value: filteredProjects?.filter(p => p.featured).length || 0 },
-            ].map((stat, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-2xl md:text-3xl font-bold text-primary">{stat.value}</div>
-                <p className="text-xs md:text-sm text-muted-foreground mt-1">{stat.label}</p>
-              </motion.div>
-            ))}
+            {/* Use AnimatedCounter and start on mount so the counters run when the page loads */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0 }}
+              className="text-center"
+            >
+              <div className="text-2xl md:text-3xl font-bold text-primary">
+                <AnimatedCounter target={filteredProjects?.length || 0} duration={2} startOnMount />
+              </div>
+              <p className="text-xs md:text-sm text-muted-foreground mt-1">Total Projects</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-center"
+            >
+              <div className="text-2xl md:text-3xl font-bold text-primary">
+                <AnimatedCounter target={allTags.length} duration={2} startOnMount />
+              </div>
+              <p className="text-xs md:text-sm text-muted-foreground mt-1">Technologies</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-center"
+            >
+              <div className="text-2xl md:text-3xl font-bold text-primary">
+                <AnimatedCounter target={filteredProjects?.filter(p => p.featured).length || 0} duration={2} startOnMount />
+              </div>
+              <p className="text-xs md:text-sm text-muted-foreground mt-1">Deployed</p>
+            </motion.div>
           </motion.div>
 
           {/* Filter Tags */}
