@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import type { Server } from "http";
 import { storage } from "./storage";
+import { pool } from "./db";
 import { api } from "@shared/routes";
 import { z } from "zod";
 import fs from "fs";
@@ -48,6 +49,95 @@ async function seedDatabase() {
       tags: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
       featured: false
     });
+  }
+
+  // Ensure other projects from projects.csv are present in the DB (useful when migrating from CSV)
+  const existing = await storage.getProjects();
+  const titles = new Set(existing.map(p => p.title));
+  console.log('seed: existing project titles ->', Array.from(titles));
+
+  // Ensure the projects sequence is in sync with max(id) to avoid duplicate key errors
+  try {
+    await pool.query("SELECT setval(pg_get_serial_sequence('projects','id'), (SELECT COALESCE(MAX(id),0) FROM projects));");
+    console.log('seed: projects id sequence reset');
+  } catch (e) {
+    console.warn('seed: failed to reset projects id sequence', e);
+  }
+
+  const extraProjects = [
+    {
+      title: "Chess Analysis Pro",
+      description: "Production-grade chess analysis tool: sync Chess.com games, analyze with Stockfish, opening explorer and training workflows.",
+      imageUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
+      projectUrl: "#",
+      repoUrl: "https://github.com/MosesCodeX-CS/Chess-analysis-pro",
+      tags: ["Python", "Stockfish", "FastAPI", "React"],
+      featured: true,
+    },
+    {
+      title: "ShopHub (E-Commerce)",
+      description: "Full-featured e-commerce platform with cart, checkout, PayPal and M-PESA integrations and an admin dashboard for product and order management.",
+      imageUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
+      projectUrl: "#",
+      repoUrl: "https://github.com/MosesCodeX-CS/ShopHub",
+      tags: ["PHP", "MySQL", "Bootstrap", "Payments"],
+      featured: true,
+    },
+    {
+      title: "Prime Nova",
+      description: "Production-ready Next.js website template with App Router, auth, blog system, and deployment-ready configuration for Vercel.",
+      imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
+      projectUrl: "#",
+      repoUrl: "https://github.com/MosesCodeX-CS/Prime-Nova",
+      tags: ["Next.js", "TypeScript", "Vercel", "Tailwind"],
+      featured: false,
+    },
+    {
+      title: "Ecommerce Page",
+      description: "A simple but complete PHP/MySQL e-commerce site with product listings, cart, checkout and admin features designed for teaching and demos.",
+      imageUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
+      projectUrl: "#",
+      repoUrl: "https://github.com/MosesCodeX-CS/Ecommerce_Page",
+      tags: ["PHP", "MySQL", "Bootstrap", "Demo"],
+      featured: false,
+    },
+    {
+      title: "Portfolio Page",
+      description: "A smaller experimental portfolio site and research notes repository used to prototype ideas and design experiments for personal branding.",
+      imageUrl: "https://images.unsplash.com/photo-1520975914249-0c68a47a8686?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80",
+      projectUrl: "#",
+      repoUrl: "https://github.com/MosesCodeX-CS/Portfolio-page",
+      tags: ["JavaScript", "Portfolio", "Design"],
+      featured: false,
+    },
+  ];
+
+  for (const p of extraProjects) {
+    if (!titles.has(p.title)) {
+      console.log('seed: inserting project ->', p.title);
+      // eslint-disable-next-line no-await-in-loop
+      await storage.createProject(p as any);
+    }
+  }
+
+  // Ensure specific projects have more representative images
+  try {
+    await pool.query(
+      `UPDATE projects SET image_url = $1 WHERE title = $2`,
+      [
+        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80',
+        'Kenyan Phishing Detector',
+      ],
+    );
+
+    await pool.query(
+      `UPDATE projects SET image_url = $1 WHERE title = $2`,
+      ['/profile-image.jpg', 'Portfolio Page'],
+    );
+
+    console.log('seed: updated image URLs for Kenyan Phishing Detector and Portfolio Page');
+  } catch (e) {
+    console.warn('seed: failed to update project images', e);
   }
 
   const existingSkills = await storage.getSkills();

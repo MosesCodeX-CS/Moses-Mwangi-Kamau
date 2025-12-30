@@ -14,7 +14,7 @@ export default function Blog() {
       date: "Dec 30, 2025",
       readTime: "10 min",
       category: "Security",
-      image: "https://images.unsplash.com/photo-1591017070006-7a46a2ae7b18?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 8,
@@ -32,7 +32,7 @@ export default function Blog() {
       date: "Dec 26, 2025",
       readTime: "9 min",
       category: "Payments",
-      image: "https://images.unsplash.com/photo-1542223616-1b6a35f9b245?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      image: "https://images.unsplash.com/photo-1520975914249-0c68a47a8686?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 10,
@@ -68,7 +68,7 @@ export default function Blog() {
       date: "Dec 18, 2025",
       readTime: "6 min",
       category: "Design",
-      image: "https://images.unsplash.com/photo-1520975914249-0c68a47a8686?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      image: "/profile-image.jpg"
     },
     {
       id: 14,
