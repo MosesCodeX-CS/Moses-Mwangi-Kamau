@@ -3,7 +3,8 @@ import type { Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
-import PDFDocument from "pdfkit";
+import fs from "fs";
+import path from "path";
 
 async function seedDatabase() {
   const existingProjects = await storage.getProjects();
@@ -125,7 +126,6 @@ export async function registerRoutes(
     res.json(project);
   });
 
-  app.get(api.skills.list.path, async (req, res) => {
     const skills = await storage.getSkills();
     res.json(skills);
   });
@@ -135,8 +135,8 @@ export async function registerRoutes(
     res.json(experiences);
   });
 
-  app.post(api.contact.submit.path, async (req, res) => {
-    try {
+        res.setHeader("Content-Disposition", "attachment; filename=Moses-Mwangi-CV.pdf");
+        res.setHeader("Content-Type", "application/pdf");
       const input = api.contact.submit.input.parse(req.body);
       const message = await storage.createMessage(input);
       res.status(201).json(message);
