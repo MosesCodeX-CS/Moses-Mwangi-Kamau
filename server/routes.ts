@@ -135,6 +135,19 @@ export async function registerRoutes(
     res.json(experiences);
   });
 
+  // Debug: check CV file presence and path (temporary)
+  app.get("/internal/debug/cv", async (_req, res) => {
+    const uploadedPdf = path.resolve(process.cwd(), "attached_assets", "Moses_Mwangi_CV.pdf");
+    const exists = fs.existsSync(uploadedPdf);
+    let size = null;
+    try {
+      if (exists) size = fs.statSync(uploadedPdf).size;
+    } catch (e) {
+      // ignore
+    }
+    res.json({ cwd: process.cwd(), path: uploadedPdf, exists, size });
+  });
+
   app.post(api.contact.submit.path, async (req, res) => {
     try {
       const input = api.contact.submit.input.parse(req.body);
