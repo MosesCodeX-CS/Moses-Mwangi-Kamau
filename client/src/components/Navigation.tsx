@@ -59,7 +59,7 @@ export function Navigation({ theme, onToggleTheme }: { theme: "light" | "dark", 
             {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
           </button>
           <a
-            href="/api/download-cv"
+            href="/Moses_Mwangi_CV.pdf"
             download="Moses-Mwangi-CV.pdf"
             className="ml-2 px-4 py-2 bg-accent text-accent-foreground text-sm font-medium rounded-full hover:bg-accent/90 transition-all flex items-center gap-2"
           >
@@ -122,7 +122,7 @@ export function Navigation({ theme, onToggleTheme }: { theme: "light" | "dark", 
                 {theme === "light" ? "Dark Mode" : "Light Mode"}
               </button>
               <a
-                href="/api/download-cv"
+                href="/Moses_Mwangi_CV.pdf"
                 download="Moses-Mwangi-CV.pdf"
                 onClick={() => setIsOpen(false)}
                 className="mt-2 px-4 py-2 bg-accent text-accent-foreground text-sm font-medium rounded-full hover:bg-accent/90 transition-all flex items-center gap-2 justify-center"
