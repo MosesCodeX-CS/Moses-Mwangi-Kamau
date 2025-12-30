@@ -42,8 +42,8 @@ function App() {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+    // Always start with light mode unless user has explicitly chosen a theme before
+    const initialTheme = savedTheme || "light";
     
     setTheme(initialTheme);
     if (initialTheme === "dark") {
