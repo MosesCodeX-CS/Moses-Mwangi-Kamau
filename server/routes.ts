@@ -208,6 +208,12 @@ Diploma in Internet Communication Technology (ICT)
 
 Generated from portfolio: moses-dev.replit.dev`;
 
+    // If an uploaded PDF exists in attached_assets, serve it directly
+    const uploadedPdf = path.resolve(process.cwd(), "attached_assets", "Moses_Mwangi_CV.pdf");
+    if (fs.existsSync(uploadedPdf)) {
+      return res.download(uploadedPdf, "Moses-Mwangi-CV.pdf");
+    }
+
       // If uploaded PDF is missing, fallback to providing a text (.txt) CV download
       res.setHeader("Content-Disposition", "attachment; filename=Moses-Mwangi-CV.txt");
       res.setHeader("Content-Type", "text/plain; charset=utf-8");
