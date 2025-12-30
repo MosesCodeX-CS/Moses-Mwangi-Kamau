@@ -125,7 +125,7 @@ export async function registerRoutes(
     }
     res.json(project);
   });
-
+  app.get(api.skills.list.path, async (req, res) => {
     const skills = await storage.getSkills();
     res.json(skills);
   });
@@ -135,8 +135,8 @@ export async function registerRoutes(
     res.json(experiences);
   });
 
-        res.setHeader("Content-Disposition", "attachment; filename=Moses-Mwangi-CV.pdf");
-        res.setHeader("Content-Type", "application/pdf");
+  app.post(api.contact.submit.path, async (req, res) => {
+    try {
       const input = api.contact.submit.input.parse(req.body);
       const message = await storage.createMessage(input);
       res.status(201).json(message);
@@ -200,6 +200,7 @@ Generated from portfolio: moses-dev.replit.dev`;
     res.setHeader("Content-Disposition", "attachment; filename=Moses-Mwangi-CV.pdf");
     res.setHeader("Content-Type", "application/pdf");
 
+    const PDFDocument = await import("pdfkit").then((m) => m.default || m);
     const doc = new PDFDocument({ margin: 50, size: "A4" });
     doc.pipe(res);
 
