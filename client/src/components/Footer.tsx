@@ -96,7 +96,7 @@ export function Footer() {
             <p className="font-mono text-xs">Built with React, TypeScript & Tailwind</p>
           </div>
           <p className="mt-2 md:mt-0 text-xs flex items-center gap-1">
-            <Calendar size={14} /> Last updated: Dec 2024
+<Calendar size={14} /> Last updated: Dec 2026
           </p>
         </motion.div>
       </div>
